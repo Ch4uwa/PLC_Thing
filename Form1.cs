@@ -20,10 +20,14 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
         }
-
+        
         private void Form1_Load(object sender, EventArgs e)
         {
-            timer1.Start();
+            connect();
+        }
+
+        private void connect() 
+        {
             try
             {
                 myNJ2.UseRoutePath = false;
@@ -32,7 +36,7 @@ namespace WindowsFormsApp1
                 myNJ2.Active = true;
 
                 Text = myNJ2.UnitName;
-                Get_Tags();    
+                Get_Tags();
             }
             catch (Exception ex)
             {
@@ -44,8 +48,8 @@ namespace WindowsFormsApp1
         {
             try
             {
-                int nj2Temp = (int)myNJ2.ReadVariable("temperatur_verklig");
-                chart1.Series["Temperature"].Points.AddXY(DateTime.Now.ToString("T"), nj2Temp);
+                int nj2Temp = 24;// (int)myNJ2.ReadVariable("temperatur_verklig");
+                chart1.Series["Temperature"].Points.AddXY(label1.Text, nj2Temp);
             }
             catch (Exception)
             {
@@ -73,16 +77,46 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            button1.Text = "Hej";
+            switch (button1.Text)
+            {
+                case "0":
+                    button1.Text = "1";
+                    break;
+                case "1":
+                    button1.Text = "0";
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            switch (button1.Text)
+            {
+                case "0":
+                    button1.Text = "1";
+                    break;
+                case "1":
+                    button1.Text = "0";
+                    break;
+                default:
+                    break;
+            }
         }
         private void button3_Click(object sender, EventArgs e)
         {
-
+            switch (button1.Text)
+            {
+                case "0":
+                    button1.Text = "1";
+                    break;
+                case "1":
+                    button1.Text = "0";
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void btn_getvars(object sender, EventArgs e)
