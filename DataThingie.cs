@@ -18,5 +18,7 @@ namespace WindowsFormsApp1
         }
 
         // Simulating bool states
+
+        // Need a string[] to simulate tag-list
     }
 }
