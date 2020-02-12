@@ -8,7 +8,7 @@ namespace WindowsFormsApp1
 {
     class DataThingie
     {
-        private int temp_val() 
+        private int temp_val()
         {
             // Create a random integer to simulate changing temperature
             var rnd = new Random();

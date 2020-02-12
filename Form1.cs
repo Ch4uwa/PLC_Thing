@@ -15,7 +15,7 @@ namespace WindowsFormsApp1
     public partial class Form1 : Form
     {
         private readonly NJCompolet myNJ2 = new NJCompolet();
-
+        
         public Form1()
         {
             InitializeComponent();
