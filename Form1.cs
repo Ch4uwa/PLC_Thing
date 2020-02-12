@@ -14,7 +14,7 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
-        private readonly NJCompolet myNJ2 = new NJCompolet();
+        private NJCompolet myNJ2 = new NJCompolet();
         
         public Form1()
         {
@@ -46,13 +46,16 @@ namespace WindowsFormsApp1
 
         private void Get_Temp()
         {
-            try
+            int nj2Temp = (int)myNJ2.ReadVariable("TempsensorInput");
+            
+            if (chart1.Series["Temperature"].Points.Count > 5)
             {
-                int nj2Temp = 24;// (int)myNJ2.ReadVariable("temperatur_verklig");
                 chart1.Series["Temperature"].Points.AddXY(label1.Text, nj2Temp);
+                chart1.Series["Temperature"].Points.RemoveAt(0);
             }
-            catch (Exception)
+            else
             {
+                chart1.Series["Temperature"].Points.AddXY(label1.Text, nj2Temp);
             }
         }
 
@@ -63,6 +66,7 @@ namespace WindowsFormsApp1
                 var var_names = myNJ2.VariableNames;
 
                 listBox1.Items.Clear();
+                textBox1.ResetText();
 
                 foreach (var item in var_names)
                 {
@@ -128,19 +132,33 @@ namespace WindowsFormsApp1
         {
             try
             {
-                textBox1.Text = (string)myNJ2.ReadVariable(listBox1.SelectedItem.ToString());
+                textBox1.ResetText();
+                string variableName = listBox1.GetItemText(listBox1.SelectedItem);
+                var variableValue = "";
+
+                if (myNJ2.ReadVariable(variableName).GetType() == typeof(int) && variableName == "TempsensorInput")
+                {
+                    int a = (int)myNJ2.ReadVariable(variableName);
+                    variableValue = ((float)a*0.1).ToString();
+                }
+                else
+                {
+                    variableValue = myNJ2.ReadVariable(variableName).ToString();
+                }
+
+                textBox1.Text = variableValue;
             }
-            catch (Exception)
+            catch (Exception exVal)
             {
-                textBox1.Text = "Failed to fetch selected";
+                textBox1.Text = exVal.Message;
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void btn_changevalue_Click(object sender, EventArgs e)
         {
             try
             {
-                myNJ2.WriteVariable((string)listBox1.SelectedItem, textBox1.Text);
+                myNJ2.WriteVariable(listBox1.GetItemText(listBox1.SelectedItem), textBox1.Text);
             }
             catch (Exception)
             {
@@ -149,8 +167,17 @@ namespace WindowsFormsApp1
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            label1.Text = DateTime.Now.ToString("T");
+            
             Get_Temp();
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            Set_Clock();
+        }
+        private void Set_Clock()
+        {
+            label1.Text = DateTime.Now.ToString("t");
         }
     }
 }

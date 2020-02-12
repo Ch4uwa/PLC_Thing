@@ -46,8 +46,9 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btn_changevalue = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,10 +66,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(11, 11);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Location = new System.Drawing.Point(22, 21);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 31);
+            this.button1.Size = new System.Drawing.Size(188, 60);
             this.button1.TabIndex = 1;
             this.button1.Text = "0";
             this.button1.UseVisualStyleBackColor = true;
@@ -76,10 +77,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(11, 46);
-            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Location = new System.Drawing.Point(22, 88);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(94, 31);
+            this.button2.Size = new System.Drawing.Size(188, 60);
             this.button2.TabIndex = 2;
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
@@ -87,10 +88,10 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(11, 81);
-            this.button3.Margin = new System.Windows.Forms.Padding(2);
+            this.button3.Location = new System.Drawing.Point(22, 156);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(94, 31);
+            this.button3.Size = new System.Drawing.Size(188, 60);
             this.button3.TabIndex = 3;
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = true;
@@ -101,10 +102,10 @@
             this.label1.AutoSize = true;
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(345, 11);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(690, 21);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 19);
+            this.label1.Size = new System.Drawing.Size(76, 33);
             this.label1.TabIndex = 5;
             this.label1.Text = "Time";
             // 
@@ -112,20 +113,20 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(147, 133);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(294, 256);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(0, 17);
+            this.label3.Size = new System.Drawing.Size(0, 31);
             this.label3.TabIndex = 6;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(147, 167);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(294, 321);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(0, 17);
+            this.label4.Size = new System.Drawing.Size(0, 31);
             this.label4.TabIndex = 7;
             // 
             // chart1
@@ -137,8 +138,8 @@
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(11, 304);
-            this.chart1.Margin = new System.Windows.Forms.Padding(2);
+            this.chart1.Location = new System.Drawing.Point(22, 585);
+            this.chart1.Margin = new System.Windows.Forms.Padding(4);
             this.chart1.Name = "chart1";
             series1.BorderWidth = 2;
             series1.ChartArea = "TempGraph";
@@ -148,7 +149,7 @@
             series1.Name = "Temperature";
             series1.XValueType = System.Windows.Forms.DataVisualization.Charting.ChartValueType.Time;
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(782, 243);
+            this.chart1.Size = new System.Drawing.Size(1564, 467);
             this.chart1.TabIndex = 8;
             this.chart1.Text = "chart1";
             title1.DockedToChartArea = "TempGraph";
@@ -158,10 +159,10 @@
             // btn_get_names
             // 
             this.btn_get_names.AutoSize = true;
-            this.btn_get_names.Location = new System.Drawing.Point(589, 3);
-            this.btn_get_names.Margin = new System.Windows.Forms.Padding(2);
+            this.btn_get_names.Location = new System.Drawing.Point(1178, 6);
+            this.btn_get_names.Margin = new System.Windows.Forms.Padding(4);
             this.btn_get_names.Name = "btn_get_names";
-            this.btn_get_names.Size = new System.Drawing.Size(204, 23);
+            this.btn_get_names.Size = new System.Drawing.Size(408, 44);
             this.btn_get_names.TabIndex = 9;
             this.btn_get_names.Text = "Update Tags";
             this.btn_get_names.UseVisualStyleBackColor = true;
@@ -169,10 +170,10 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(668, 267);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox1.Location = new System.Drawing.Point(1336, 513);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(125, 20);
+            this.textBox1.Size = new System.Drawing.Size(246, 31);
             this.textBox1.TabIndex = 10;
             // 
             // timer1
@@ -184,40 +185,46 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(589, 51);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.listBox1.ItemHeight = 25;
+            this.listBox1.Location = new System.Drawing.Point(1178, 98);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(4);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(204, 212);
+            this.listBox1.Size = new System.Drawing.Size(404, 404);
             this.listBox1.TabIndex = 11;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
-            // button4
+            // btn_changevalue
             // 
-            this.button4.Location = new System.Drawing.Point(588, 267);
-            this.button4.Margin = new System.Windows.Forms.Padding(2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(76, 20);
-            this.button4.TabIndex = 12;
-            this.button4.Text = "Set Val";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btn_changevalue.Location = new System.Drawing.Point(1176, 513);
+            this.btn_changevalue.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_changevalue.Name = "btn_changevalue";
+            this.btn_changevalue.Size = new System.Drawing.Size(152, 38);
+            this.btn_changevalue.TabIndex = 12;
+            this.btn_changevalue.Text = "Set Val";
+            this.btn_changevalue.UseVisualStyleBackColor = true;
+            this.btn_changevalue.Click += new System.EventHandler(this.btn_changevalue_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(654, 36);
+            this.label5.Location = new System.Drawing.Point(1308, 69);
+            this.label5.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(77, 13);
+            this.label5.Size = new System.Drawing.Size(154, 25);
             this.label5.TabIndex = 13;
             this.label5.Text = "Available Tags";
             // 
+            // timer2
+            // 
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 558);
+            this.ClientSize = new System.Drawing.Size(1608, 1073);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btn_changevalue);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btn_get_names);
@@ -228,7 +235,7 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
@@ -251,8 +258,9 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btn_changevalue;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Timer timer2;
     }
 }
 
