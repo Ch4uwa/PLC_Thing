@@ -24,6 +24,19 @@ namespace WindowsFormsApp1
         private void Form1_Load(object sender, EventArgs e)
         {
             connect();
+            Get_Tags();
+            set_vars();
+        }
+
+        private void set_vars()
+        {
+            try
+            {
+                               
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private void connect() 
@@ -36,7 +49,6 @@ namespace WindowsFormsApp1
                 myNJ2.Active = true;
 
                 Text = myNJ2.UnitName;
-                Get_Tags();
             }
             catch (Exception ex)
             {
@@ -46,8 +58,17 @@ namespace WindowsFormsApp1
 
         private void Get_Temp()
         {
-            var nj2Temp = (int)myNJ2.ReadVariable("TempsensorInput") * 0.1;
+            double nj2Temp;
+            try
+            {
+                nj2Temp = (int)myNJ2.ReadVariable("TempsensorInput") * 0.1;
             
+            }
+            catch(Exception)
+            {
+                var rnd = new Random();
+                nj2Temp = rnd.Next(6, 22);
+            }
             if (chart1.Series["Temperature"].Points.Count > 5)
             {
                 chart1.Series["Temperature"].Points.AddXY(label1.Text, nj2Temp);
@@ -81,46 +102,14 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            switch (button1.Text)
+            try
             {
-                case "0":
-                    button1.Text = "1";
-                    break;
-                case "1":
-                    button1.Text = "0";
-                    break;
-                default:
-                    break;
+                button1.Text = myNJ2.ReadVariable("DataInt").ToString();
             }
-        }
+            catch (Exception)
+            {
+            }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            switch (button1.Text)
-            {
-                case "0":
-                    button1.Text = "1";
-                    break;
-                case "1":
-                    button1.Text = "0";
-                    break;
-                default:
-                    break;
-            }
-        }
-        private void button3_Click(object sender, EventArgs e)
-        {
-            switch (button1.Text)
-            {
-                case "0":
-                    button1.Text = "1";
-                    break;
-                case "1":
-                    button1.Text = "0";
-                    break;
-                default:
-                    break;
-            }
         }
 
         private void btn_getvars(object sender, EventArgs e)
@@ -135,17 +124,22 @@ namespace WindowsFormsApp1
                 textBox1.ResetText();
                 string variableName = listBox1.GetItemText(listBox1.SelectedItem);
                 var variableValue = "";
+                btn_changevalue.Enabled = true;
 
                 if (myNJ2.ReadVariable(variableName).GetType() == typeof(int) && variableName == "TempsensorInput")
                 {
+                    btn_changevalue.Enabled = false;
                     int a = (int)myNJ2.ReadVariable(variableName);
-                    variableValue = ((float)a*0.1).ToString();
+                    variableValue = ((float)a * 0.1).ToString();
                 }
                 else
                 {
                     variableValue = myNJ2.ReadVariable(variableName).ToString();
+                    if (variableName == "DataBit")
+                    {
+                        btn_changevalue.Enabled = false;
+                    }
                 }
-
                 textBox1.Text = variableValue;
             }
             catch (Exception exVal)
@@ -162,22 +156,38 @@ namespace WindowsFormsApp1
             }
             catch (Exception)
             {
+                textBox1.Text = "Error writing to variable.";
             }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            
             Get_Temp();
         }
 
         private void timer2_Tick(object sender, EventArgs e)
         {
             Set_Clock();
+            try
+            {
+                int prog_b_val = (int)myNJ2.ReadVariable("Dataint");
+                prog_bar_btn1.Value = prog_b_val;
+                button1.Text = prog_b_val.ToString();
+
+            }
+            catch (Exception)
+            {
+            }
         }
         private void Set_Clock()
         {
-            label1.Text = DateTime.Now.ToString("t");
+            try
+            {
+                label1.Text = DateTime.Now.ToString("T");
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 }
