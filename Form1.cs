@@ -25,19 +25,9 @@ namespace WindowsFormsApp1
         {
             connect();
             Get_Tags();
-            set_vars();
         }
 
-        private void set_vars()
-        {
-            try
-            {
-                               
-            }
-            catch (Exception)
-            {
-            }
-        }
+        
 
         private void connect() 
         {
@@ -82,20 +72,19 @@ namespace WindowsFormsApp1
 
         private void Get_Tags()
         {
+            listBox1.Items.Clear();
+            textBox1.ResetText();
             try
             {
                 var var_names = myNJ2.VariableNames;
-
-                listBox1.Items.Clear();
-                textBox1.ResetText();
 
                 foreach (var item in var_names)
                 {
                     listBox1.Items.Add(item);
                 }
             }
-            catch(Exception e)
-            {
+            catch (Exception e)
+            { 
                 label5.Text = e.Message;
             }
         }
