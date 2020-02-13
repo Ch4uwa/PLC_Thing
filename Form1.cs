@@ -100,11 +100,28 @@ namespace WindowsFormsApp1
             }
         }
 
+        private void Set_Clock()
+        {
+            try
+            {
+                label1.Text = DateTime.Now.ToString("T");
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+
+        // Button click methods
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
-                button1.Text = myNJ2.ReadVariable("DataInt").ToString();
+                if (prog_bar_btn1.Value > 0)
+                {
+                    myNJ2.WriteVariable("DataInt", 0);
+                    button1.Text = string.Format("Flushing {0}", prog_bar_btn1.Value);
+                }
             }
             catch (Exception)
             {
@@ -117,6 +134,19 @@ namespace WindowsFormsApp1
             Get_Tags();
         }
 
+        private void btn_changevalue_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                myNJ2.WriteVariable(listBox1.GetItemText(listBox1.SelectedItem), textBox1.Text);
+            }
+            catch (Exception)
+            {
+                textBox1.Text = "Error writing to variable.";
+            }
+        }
+        
+        // Show value of selected item in textbox
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -125,7 +155,9 @@ namespace WindowsFormsApp1
                 string variableName = listBox1.GetItemText(listBox1.SelectedItem);
                 var variableValue = "";
                 btn_changevalue.Enabled = true;
-
+                
+                // format value from temp sensor to human readable
+                // disable set value button for sensor and bool item
                 if (myNJ2.ReadVariable(variableName).GetType() == typeof(int) && variableName == "TempsensorInput")
                 {
                     btn_changevalue.Enabled = false;
@@ -148,18 +180,9 @@ namespace WindowsFormsApp1
             }
         }
 
-        private void btn_changevalue_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                myNJ2.WriteVariable(listBox1.GetItemText(listBox1.SelectedItem), textBox1.Text);
-            }
-            catch (Exception)
-            {
-                textBox1.Text = "Error writing to variable.";
-            }
-        }
 
+
+        // Update functions
         private void timer1_Tick(object sender, EventArgs e)
         {
             Get_Temp();
@@ -172,18 +195,6 @@ namespace WindowsFormsApp1
             {
                 int prog_b_val = (int)myNJ2.ReadVariable("Dataint");
                 prog_bar_btn1.Value = prog_b_val;
-                button1.Text = prog_b_val.ToString();
-
-            }
-            catch (Exception)
-            {
-            }
-        }
-        private void Set_Clock()
-        {
-            try
-            {
-                label1.Text = DateTime.Now.ToString("T");
             }
             catch (Exception)
             {
