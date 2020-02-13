@@ -16,6 +16,7 @@ namespace WindowsFormsApp1
 
             return rnd_temperature;
         }
+        private void a { get; set; }
 
         // Simulating bool states
 

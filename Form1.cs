@@ -30,13 +30,7 @@ namespace WindowsFormsApp1
 
         private void set_vars()
         {
-            try
-            {
-                               
-            }
-            catch (Exception)
-            {
-            }
+            
         }
 
         private void connect() 
